@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فکر و نظر اکیڈمی - علمی و تحقیقی مرکز</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #1e3a8a; /* Deep Blue */
+            --secondary: #0f172a; /* Slate 900 */
+            --accent: #b45309; /* Gold/Bronze */
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+            background-color: var(--bg-light);
+            color: #334155;
+        }
+
+        h1, h2, h3, .font-urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            line-height: 1.8;
+        }
+
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--primary);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #172554 100%);
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px 0 rgba(30, 58, 138, 0.39);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.23);
+        }
+
+        /* Section Headings */
+        .section-heading {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+            color: var(--secondary);
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Video Play Button Overlay */
+        .play-overlay {
+            background: rgba(0,0,0,0.5);
+            transition: all 0.3s;
+        }
+        .video-card:hover .play-overlay {
+            background: rgba(0,0,0,0.3);
+        }
+        .video-card:hover .play-icon {
+            transform: scale(1.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <div class="relative">
+                        <!-- Ensure logo image is in same folder -->
+                        <img src="IMG-20240109-WA0016.jpg" 
+                             onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3304/3304567.png';"
+                             alt="Fikr-o-Nazar Logo" 
+                             class="w-14 h-14 rounded-full shadow-md object-cover border-2 border-blue-900 transition-transform group-hover:scale-105 bg-white">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-800 leading-none group-hover:text-blue-900 transition">فکر و نظر</h1>
+                        <span class="text-[10px] text-blue-600 font-bold tracking-[0.2em] uppercase">ACADEMY</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden xl:flex space-x-2 space-x-reverse items-center bg-slate-50 px-2 py-1.5 rounded-full border border-slate-200 text-sm font-urdu">
+                    <a href="#director" class="px-4 py-2 rounded-full text-slate-600 hover:text-blue-900 hover:bg-white transition font-bold">بانی و خدمات</a>
+                    <a href="#recent-courses" class="px-4 py-2 rounded-full text-slate-600 hover:text-blue-900 hover:bg-white transition font-bold">حالیہ کورسز</a>
+                    <a href="#lectures" class="px-4 py-2 rounded-full text-slate-600 hover:text-blue-900 hover:bg-white transition font-bold">لیکچرز</a>
+                    <a href="#ilhad" class="px-4 py-2 rounded-full text-red-600 hover:text-red-700 hover:bg-red-50 transition font-bold border border-transparent hover:border-red-100">الحادِ جدید</a>
+                    <a href="#library" class="px-4 py-2 rounded-full text-slate-600 hover:text-blue-900 hover:bg-white transition font-bold">کتب خانہ</a>
+                    <a href="#qa" class="btn-primary ml-2 px-6 py-2 rounded-full font-bold shadow-md transform hover:scale-105">سوال کریں</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="xl:hidden">
+                    <button onclick="toggleMenu()" class="text-slate-700 hover:text-blue-900 text-2xl p-2">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden xl:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl h-screen overflow-y-auto pb-40 z-50">
+            <div class="p-4 space-y-1">
+                <a href="#director" onclick="toggleMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-bold">بانی و خدمات</a>
+                <a href="#recent-courses" onclick="toggleMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-bold">حالیہ کورسز</a>
+                <a href="#lectures" onclick="toggleMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-bold">لیکچرز</a>
+                <a href="#ilhad" onclick="toggleMenu()" class="block px-4 py-3 rounded-lg bg-red-50 text-red-700 font-bold border border-red-100">الحادِ جدید</a>
+                <a href="#library" onclick="toggleMenu()" class="block px-4 py-3 rounded-lg hover:bg-slate-50 text-slate-700 font-bold">کتب و مضامین</a>
+                <a href="#qa" onclick="toggleMenu()" class="block px-4 py-3 rounded-lg bg-blue-900 text-white text-center mt-4 font-bold">سوال کریں</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative text-white py-32 px-4 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <!-- Ensure 'poster.jpg' is in the same folder -->
+            <img src="poster.jpg" 
+                 onerror="this.src='https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'" 
+                 alt="Library Background" 
+                 class="w-full h-full object-cover">
+            
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#1e3a8a]/90 to-[#0f172a]"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-sm mb-6 text-blue-100 backdrop-blur-md shadow-lg font-bold animate-pulse">
+                ✨ علم، تحقیق، اور فکری تربیت کا عالمی مرکز
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-2xl font-urdu">
+                فکر و نظر اکیڈمی
+            </h1>
+            <p class="text-lg md:text-xl text-blue-100 mb-10 max-w-2xl mx-auto leading-loose font-urdu font-light opacity-90">
+                ماہرین فن کے زیر اہتمام اسلامک ریسرچ موضوعات پر آن لائن کورسز کا انعقاد کرنے والا اپنی نوعیت کی منفرد اکیڈمی۔
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#recent-courses" class="btn-primary bg-white text-blue-900 px-8 py-3.5 rounded-xl font-bold hover:bg-slate-100 transition shadow-xl flex items-center justify-center gap-2">
+                    <i class="fas fa-graduation-cap"></i> کورسز دیکھیں
+                </a>
+                <a href="#qa" class="px-8 py-3.5 rounded-xl font-bold border border-white/30 hover:bg-white/10 transition backdrop-blur-sm flex items-center justify-center gap-2">
+                    <i class="fas fa-question-circle"></i> سوال پوچھیں
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="bg-white border-b border-slate-200 py-6 relative z-20 -mt-8 mx-4 md:mx-auto max-w-5xl rounded-xl shadow-lg grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div>
+            <h4 class="text-3xl font-bold text-blue-900">12</h4>
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">کورسز</p>
+        </div>
+        <div>
+            <h4 class="text-3xl font-bold text-blue-900">1800+</h4>
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">اندرون ملک طلبہ</p>
+        </div>
+        <div>
+            <h4 class="text-3xl font-bold text-blue-900">200+</h4>
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">بیرون ملک طلبہ</p>
+        </div>
+        <div>
+            <h4 class="text-3xl font-bold text-blue-900">5+</h4>
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">سال</p>
+        </div>
+    </div>
+
+    <!-- 1. Founder & Director Section -->
+    <section id="director" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                
+                <!-- Text Content Side -->
+                <div class="order-2 md:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-4">
+                        <i class="fas fa-user-tie"></i> بانی و سرپرست
+                    </div>
+                    <h2 class="text-4xl font-bold text-slate-900 mb-2 font-urdu">مولانا عبداللہ عمر</h2>
+                    <p class="text-slate-500 font-bold text-sm mb-8 border-b pb-4 border-slate-100">
+                        ایم فل اسلامیات | فاضل درسِ نظامی | متخصص فی العقائد
+                    </p>
+
+                    <div class="space-y-8">
+                        <!-- Responsibilities -->
+                        <div>
+                            <h3 class="text-xl text-blue-800 font-bold mb-3 font-urdu border-r-4 border-blue-600 pr-3">موجودہ ذمہ داریاں</h3>
+                            <ul class="list-none space-y-2 text-slate-700 text-sm font-urdu">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i> مدیر: فکر و نظر اکیڈمی</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i> مسؤل: رد الحاد فورم JYM</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i> نگران: تخصص فی العقائد (جامعۃ الشیخ)</li>
+                            </ul>
+                        </div>
+
+                        <!-- Services & Research -->
+                        <div>
+                            <h3 class="text-xl text-blue-800 font-bold mb-3 font-urdu border-r-4 border-blue-600 pr-3">علمی و تحقیقی خدمات</h3>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-3">
+                                <p class="text-slate-700 text-sm leading-relaxed font-urdu">
+                                    <span class="font-bold text-blue-900">تجربہ:</span> گزشتہ 6 سالوں سے ردِ الحاد اور دفاعِ دین کی محنت سے وابستہ۔
+                                </p>
+                                <p class="text-slate-700 text-sm leading-relaxed font-urdu">
+                                    <span class="font-bold text-blue-900">تصانیف:</span> 15 کتب کے مصنف (موضوعات: تفہیم مغرب سیریز، عقائد، رد الحاد، ملحدین کے اعتراضات کے جوابات)۔
+                                </p>
+                                <p class="text-slate-700 text-sm leading-relaxed font-urdu">
+                                    <span class="font-bold text-blue-900">کورسز:</span> فکر و نظر اکیڈمی کے تحت 15 سے زائد پرزنٹیشن کورسز کی ترتیب و تدوین۔
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Teaching Topics -->
+                        <div>
+                            <h3 class="text-xl text-blue-800 font-bold mb-3 font-urdu border-r-4 border-blue-600 pr-3">تدریسی موضوعات (Specialization)</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold border border-blue-100">علم الکلام (قدیم و جدید)</span>
+                                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold border border-blue-100">رد الحاد (Refutation of Atheism)</span>
+                                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold border border-blue-100">Western Thought & Philosophy</span>
+                                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold border border-blue-100">Intellectual Warfare</span>
+                                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold border border-blue-100">مطالعہ استشراق (Orientalism)</span>
+                                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold border border-blue-100">فقہ الفتن</span>
+                                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-bold border border-blue-100">جدت پسندانہ نظریات کا تعاقب</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Side -->
+                <div class="order-1 md:order-2 relative group sticky top-24">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
+                        <img src="https://img.freepik.com/free-photo/senior-arab-man-glasses-smiling_23-2148766708.jpg" alt="Maulana Abdullah Umar" class="w-full h-[550px] object-cover transform transition duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-6 pt-12">
+                            <p class="text-white text-center font-urdu font-bold text-lg">"دفاعِ دین اور ردِ الحاد، ہمارا مشن"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Recent Courses -->
+    <section id="recent-courses" class="py-24 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-800 section-heading font-urdu">حالیہ کورسز</h2>
+                <p class="text-slate-500">اپنے پسندیدہ کورس میں آج ہی داخلہ لیں۔</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Course Card 1: Existence of God -->
+                <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1m8PmtMnRBj_ECPF9kCC4fu8zQcGxlczl" 
+                             onerror="this.src='https://img.freepik.com/free-photo/quran-with-rosary-beads_1150-18456.jpg'"
+                             class="w-full h-full object-cover transition duration-500 group-hover:scale-110" 
+                             alt="Existence of God Thumbnail">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg animate-pulse">داخلے جاری</div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 font-urdu">دلائل وجود خدا The existence of God کورس</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow font-urdu">خدا کے وجود پر عقلی و سائنسی دلائل اور جدید شبہات کا علمی رد۔</p>
+                        <div class="mt-auto border-t border-slate-100 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-slate-500"><i class="fas fa-clock"></i> 3 ماہ</span>
+                            <a href="#" class="text-blue-600 font-bold text-sm hover:underline">تفصیلات <i class="fas fa-arrow-left"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 2: Ghazaliyat -->
+                <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1v-uIvegg2VRFFBAWDlIYNKL9seZ5pTPu" 
+                             onerror="this.src='https://img.freepik.com/free-photo/financial-charts-laptop_23-2148114674.jpg'"
+                             class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                             alt="Ghazaliyat Thumbnail">
+                        <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">نیا بیچ</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 font-urdu">غزالیات (علوم غزالی کورس )</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow font-urdu">امام غزالی کی فکر، احیاء العلوم اور دیگر تصانیف کا تحقیقی و تنقیدی جائزہ۔</p>
+                        <div class="mt-auto border-t border-slate-100 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-slate-500"><i class="fas fa-clock"></i> 2 ماہ</span>
+                            <a href="#" class="text-blue-600 font-bold text-sm hover:underline">تفصیلات <i class="fas fa-arrow-left"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card 3: Placeholder -->
+                <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col">
+                    <div class="h-56 relative overflow-hidden">
+                        <img src="https://img.freepik.com/free-photo/still-life-books-versus-technology_23-2150063071.jpg" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">جلد آرہا ہے</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 font-urdu">منطق اور فلسفہ</h3>
+                        <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-grow font-urdu">قدیم و جدید فلسفیانہ مباحث کا تنقیدی جائزہ اور رد الحاد۔</p>
+                        <div class="mt-auto border-t border-slate-100 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-slate-500"><i class="fas fa-clock"></i> 4 ماہ</span>
+                            <a href="#" class="text-slate-400 font-bold text-sm cursor-not-allowed">جلد دستیاب</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. General Courses (Umumi Courses) -->
+    <section id="general-courses" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-r-4 border-blue-900 pr-4">عمومی کورسز</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- List Item Style -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:shadow-md transition flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-xl"><i class="fas fa-language"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">عربی گرامر</h4>
+                        <p class="text-xs text-slate-500">نحو و صرف بنیادی کورس</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:shadow-md transition flex items-center gap-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-xl"><i class="fas fa-book-reader"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">ترجمہ قرآن</h4>
+                        <p class="text-xs text-slate-500">مکمل قرآن کا لفظی ترجمہ</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:shadow-md transition flex items-center gap-4">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-xl"><i class="fas fa-pen-nib"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">فن خطاطی</h4>
+                        <p class="text-xs text-slate-500">عربی اور اردو خطاطی</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 hover:shadow-md transition flex items-center gap-4">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 text-xl"><i class="fas fa-history"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">تاریخ اسلام</h4>
+                        <p class="text-xs text-slate-500">عہد رسالت سے عصر حاضر تک</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Ilhad-e-Jadeed (Special Focus) -->
+    <section id="ilhad" class="py-24 bg-[#0f172a] text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-red-400 font-bold tracking-widest uppercase text-sm border border-red-500/30 px-3 py-1 rounded-full">Special Focus</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 font-urdu">الحادِ جدید: تعارف اور محاکمہ</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-slate-300 text-lg leading-loose font-urdu text-justify">
+                        عصر حاضر کا سب سے بڑا فکری چیلنج "الحادِ جدید" (New Atheism) ہے۔ یہ سائنس، فلسفہ اور اخلاقیات کے نام پر مذہب پر ایک منظم حملہ ہے۔ فکر و نظر اکیڈمی کا امتیاز یہ ہے کہ ہم جدید سائنسی اور عقلی دلائل سے الحاد کا علمی محاکمہ کرتے ہیں۔
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10">
+                            <i class="fas fa-atom text-red-500 text-xl"></i>
+                            <span class="text-slate-200 font-bold">خدا کا وجود اور سائنسی دلائل</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10">
+                            <i class="fas fa-brain text-red-500 text-xl"></i>
+                            <span class="text-slate-200 font-bold">مسئلہ شر (Problem of Evil) کا حل</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10">
+                            <i class="fas fa-dna text-red-500 text-xl"></i>
+                            <span class="text-slate-200 font-bold">نظریہ ارتقاء اور اسلام</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 backdrop-blur-sm">
+                    <h3 class="text-xl font-bold mb-4 text-white border-b border-slate-600 pb-3">شکوک و شبہات کے جوابات</h3>
+                    <div class="space-y-4">
+                        <!-- Link Example 1 -->
+                        <a href="https://youtube.com/" target="_blank" class="block bg-slate-800 p-4 rounded-xl hover:bg-slate-700 transition group border border-slate-700">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-sm text-white group-hover:text-red-400 transition">کیا سائنس نے خدا کو غیر ضروری کر دیا ہے؟</h4>
+                                <i class="fas fa-play-circle text-2xl text-red-500"></i>
+                            </div>
+                        </a>
+                        <!-- Link Example 2 -->
+                        <a href="#" class="block bg-slate-800 p-4 rounded-xl hover:bg-slate-700 transition group border border-slate-700">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-sm text-white group-hover:text-red-400 transition">اسلام اور آزادی رائے</h4>
+                                <i class="fas fa-file-alt text-2xl text-blue-400"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Lectures Section (Updated) -->
+    <section id="lectures" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-slate-800 section-heading">ویڈیو محاضرات (Video Lectures)</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Video 1 -->
+                <a href="https://youtu.be/4JflM_od4rQ" target="_blank" class="bg-white rounded-xl overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-300 block group border border-slate-100">
+                    <div class="relative aspect-video w-full overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/4JflM_od4rQ/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover group-hover:opacity-90 transition">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white text-xl group-hover:bg-red-600 transition-colors">
+                            <i class="fas fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="p-5 text-center">
+                        <h3 class="text-lg font-bold text-slate-800 font-urdu leading-relaxed group-hover:text-blue-700 transition">فکر غزالی رح اورخارجی و داخلی تنقید میں انکا منہج (6/1)</h3>
+                    </div>
+                </a>
+
+                <!-- Video 2 -->
+                <a href="https://youtu.be/o7rCK8P4v8c" target="_blank" class="bg-white rounded-xl overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-300 block group border border-slate-100">
+                    <div class="relative aspect-video w-full overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/o7rCK8P4v8c/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover group-hover:opacity-90 transition">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white text-xl group-hover:bg-red-600 transition-colors">
+                            <i class="fas fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="p-5 text-center">
+                        <h3 class="text-lg font-bold text-slate-800 font-urdu leading-relaxed group-hover:text-blue-700 transition">کلاس (13) سیشن (2) مستشرق اسپرنگر کے اشکالات کا جائزہ</h3>
+                    </div>
+                </a>
+
+                <!-- Video 3 -->
+                <a href="https://youtu.be/WXH-s-oPM1k" target="_blank" class="bg-white rounded-xl overflow-hidden shadow-lg hover:-translate-y-2 transition-all duration-300 block group border border-slate-100">
+                    <div class="relative aspect-video w-full overflow-hidden bg-black">
+                        <img src="https://img.youtube.com/vi/WXH-s-oPM1k/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover group-hover:opacity-90 transition">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white text-xl group-hover:bg-red-600 transition-colors">
+                            <i class="fas fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="p-5 text-center">
+                        <h3 class="text-lg font-bold text-slate-800 font-urdu leading-relaxed group-hover:text-blue-700 transition">کلاس (9) سیشن (1) مارڈن فلاسفی اور "فطرت پرستی" کا جائزہ</h3>
+                    </div>
+                </a>
+
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="https://www.youtube.com/@Fikr-o-NazarAcademy" target="_blank" class="border-2 border-slate-800 text-slate-800 px-6 py-2 rounded-lg font-bold hover:bg-slate-800 hover:text-white transition">مزید لیکچرز دیکھیں</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 & 5. Library (Books & Articles) - LINKING SECTION -->
+    <section id="library" class="py-24 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-slate-800 section-heading font-urdu">کتب و مضامین</h2>
+                <p class="text-slate-500">علمی سرمایہ تک براہ راست رسائی حاصل کریں۔</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                
+                <!-- Books Section (Expanded to 2 Columns width) -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-blue-900 flex items-center gap-2"><i class="fas fa-book"></i> ڈیجیٹل لائبریری</h3>
+                        <a href="https://drive.google.com/drive/folders/1Cl3iaUwmLzITQZxed7iiD63DeUplkydR" target="_blank" class="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-bold hover:bg-blue-200 transition">
+                            تمام کتب دیکھیں <i class="fas fa-external-link-alt ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-5">
+                         
+                         <!-- Book 1 -->
+                        <div class="group relative">
+                            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 hover:shadow-xl transition text-center h-full flex flex-col">
+                                <div class="w-full h-40 bg-slate-800 rounded-lg mb-3 overflow-hidden relative">
+                                    <img src="https://lh3.googleusercontent.com/d/1RwhEU9KxryES2xt-pCpb56WHS8UGTvbH" 
+                                         onerror="this.src='https://img.freepik.com/free-photo/book-library-with-open-textbook_1150-5920.jpg'"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         alt="Book Cover 1">
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-sm truncate mb-1">اسلامی کتاب 1</h4>
+                                <a href="https://drive.google.com/file/d/1RwhEU9KxryES2xt-pCpb56WHS8UGTvbH/view" target="_blank" class="mt-auto w-full block bg-blue-100 text-blue-700 text-xs py-2 rounded-lg hover:bg-blue-600 hover:text-white transition font-bold">ڈاؤنلوڈ</a>
+                            </div>
+                        </div>
+
+                         <!-- Book 2 -->
+                         <div class="group relative">
+                            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 hover:shadow-xl transition text-center h-full flex flex-col">
+                                <div class="w-full h-40 bg-slate-800 rounded-lg mb-3 overflow-hidden relative">
+                                    <img src="https://lh3.googleusercontent.com/d/1ICw1u2PzdyMmrcmbZwJxdBjJitPQvN6w" 
+                                         onerror="this.src='https://img.freepik.com/free-photo/book-library-with-open-textbook_1150-5920.jpg'"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         alt="Book Cover 2">
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-sm truncate mb-1">اسلامی کتاب 2</h4>
+                                <a href="https://drive.google.com/file/d/1ICw1u2PzdyMmrcmbZwJxdBjJitPQvN6w/view" target="_blank" class="mt-auto w-full block bg-blue-100 text-blue-700 text-xs py-2 rounded-lg hover:bg-blue-600 hover:text-white transition font-bold">ڈاؤنلوڈ</a>
+                            </div>
+                        </div>
+
+                        <!-- Book 3 -->
+                        <div class="group relative">
+                            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 hover:shadow-xl transition text-center h-full flex flex-col">
+                                <div class="w-full h-40 bg-slate-800 rounded-lg mb-3 overflow-hidden relative">
+                                    <img src="https://lh3.googleusercontent.com/d/1S3nIu1WesO3pwuDA6xver0dTu18tGpAA" 
+                                         onerror="this.src='https://img.freepik.com/free-photo/book-library-with-open-textbook_1150-5920.jpg'"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         alt="Book Cover 3">
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-sm truncate mb-1">اسلامی کتاب 3</h4>
+                                <a href="https://drive.google.com/file/d/1S3nIu1WesO3pwuDA6xver0dTu18tGpAA/view" target="_blank" class="mt-auto w-full block bg-blue-100 text-blue-700 text-xs py-2 rounded-lg hover:bg-blue-600 hover:text-white transition font-bold">ڈاؤنلوڈ</a>
+                            </div>
+                        </div>
+
+                        <!-- Book 4 -->
+                        <div class="group relative">
+                            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 hover:shadow-xl transition text-center h-full flex flex-col">
+                                <div class="w-full h-40 bg-slate-800 rounded-lg mb-3 overflow-hidden relative">
+                                    <img src="https://lh3.googleusercontent.com/d/1vMJl7Nr5kMXKbTrEpfx7wvyaXthdOFj7" 
+                                         onerror="this.src='https://img.freepik.com/free-photo/book-library-with-open-textbook_1150-5920.jpg'"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         alt="Book Cover 4">
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-sm truncate mb-1">اسلامی کتاب 4</h4>
+                                <a href="https://drive.google.com/file/d/1vMJl7Nr5kMXKbTrEpfx7wvyaXthdOFj7/view" target="_blank" class="mt-auto w-full block bg-blue-100 text-blue-700 text-xs py-2 rounded-lg hover:bg-blue-600 hover:text-white transition font-bold">ڈاؤنلوڈ</a>
+                            </div>
+                        </div>
+
+                        <!-- Book 5 -->
+                        <div class="group relative">
+                            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 hover:shadow-xl transition text-center h-full flex flex-col">
+                                <div class="w-full h-40 bg-slate-800 rounded-lg mb-3 overflow-hidden relative">
+                                    <img src="https://lh3.googleusercontent.com/d/1EMsry5dfblPFVGhVm1igXfGshV_Trd3d" 
+                                         onerror="this.src='https://img.freepik.com/free-photo/book-library-with-open-textbook_1150-5920.jpg'"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                         alt="Book Cover 5">
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-sm truncate mb-1">اسلامی کتاب 5</h4>
+                                <a href="https://drive.google.com/file/d/1EMsry5dfblPFVGhVm1igXfGshV_Trd3d/view" target="_blank" class="mt-auto w-full block bg-blue-100 text-blue-700 text-xs py-2 rounded-lg hover:bg-blue-600 hover:text-white transition font-bold">ڈاؤنلوڈ</a>
+                            </div>
+                        </div>
+
+                        <!-- Book 6 (Placeholder for future) -->
+                        <div class="group relative">
+                            <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 hover:shadow-xl transition text-center h-full flex flex-col">
+                                <div class="w-full h-40 bg-slate-800 rounded-lg mb-3 overflow-hidden">
+                                    <div class="w-full h-full flex items-center justify-center bg-teal-900 text-white">
+                                        <i class="fas fa-plus text-3xl"></i>
+                                    </div>
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-sm truncate mb-1">مزید کتب</h4>
+                                <a href="https://drive.google.com/drive/folders/1Cl3iaUwmLzITQZxed7iiD63DeUplkydR" target="_blank" class="mt-auto w-full block bg-blue-100 text-blue-700 text-xs py-2 rounded-lg hover:bg-blue-600 hover:text-white transition font-bold">دیکھیں</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Articles Section (1 Column width) -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center gap-2"><i class="fas fa-newspaper"></i> تازہ ترین مضامین</h3>
+                    <div class="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scroll">
+                        
+                        <!-- New Facebook Article Link (Image Style) -->
+                        <a href="https://www.facebook.com/share/p/1AfzNucrFp/" target="_blank" class="block bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl transition group relative">
+                            
+                            <!-- Cover Image Area -->
+                            <div class="relative h-48 w-full bg-slate-100">
+                                <!-- Facebook Badge -->
+                                <div class="absolute top-0 left-0 bg-[#1877F2] text-white text-[10px] px-3 py-1 rounded-br-lg font-bold z-10 shadow-sm">
+                                    <i class="fab fa-facebook-f mr-1"></i> فیس بک پوسٹ
+                                </div>
+                                
+                                <!-- Cover Image Updated -->
+                                <img src="1767110187238.jpg" 
+                                     onerror="this.src='https://img.freepik.com/free-photo/top-view-books-with-copy-space_23-2148529245.jpg'"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
+                                     alt="Article Cover">
+                                
+                                <!-- Click Overlay Hint -->
+                                <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <span class="bg-white/90 text-blue-700 px-4 py-2 rounded-full text-xs font-bold shadow-lg">
+                                        پڑھنے کے لیے کلک کریں <i class="fas fa-external-link-alt ml-1"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Minimal Info Below Image -->
+                            <div class="p-4 bg-slate-50">
+                                <h4 class="font-bold text-slate-800 text-sm mb-1 group-hover:text-blue-700 transition">دلیل امکان اور جدید الحادی اعتراضات</h4>
+                                <p class="text-[10px] text-slate-500">فیس بک پر مکمل تحریر ملاحظہ کریں۔</p>
+                            </div>
+                        </a>
+
+                        <!-- Article Link 1 (Scientism) -->
+                        <a href="#" class="block bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-white hover:shadow-md transition">
+                            <div class="flex justify-between text-[10px] text-slate-400 mb-2">
+                                <span><i class="far fa-calendar"></i> 25 اکتوبر 2023</span>
+                                <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-bold">الحاد</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-2 text-base font-urdu">سائنٹزم (Scientism) کیا ہے؟</h4>
+                            <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed font-urdu">سائنس کی حدود اور اس کے بارے میں پائے جانے والے عام مغالطوں کا تفصیلی جائزہ...</p>
+                        </a>
+                        
+                        <!-- Article Link 2 (Seerat) -->
+                        <a href="#" class="block bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-white hover:shadow-md transition">
+                            <div class="flex justify-between text-[10px] text-slate-400 mb-2">
+                                <span><i class="far fa-calendar"></i> 20 اکتوبر 2023</span>
+                                <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded font-bold">سیرت</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-2 text-base font-urdu">مطالعہ سیرت کی اہمیت</h4>
+                            <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed font-urdu">عصر حاضر کے مسائل کا حل سیرت طیبہ کی روشنی میں کیسے تلاش کیا جائے...</p>
+                        </a>
+
+                        <!-- Article Link 3 (Modern Finance) -->
+                        <a href="#" class="block bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-white hover:shadow-md transition">
+                            <div class="flex justify-between text-[10px] text-slate-400 mb-2">
+                                <span><i class="far fa-calendar"></i> 15 اکتوبر 2023</span>
+                                <span class="bg-purple-100 text-purple-700 px-2 py-0.5 rounded font-bold">فقہ</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-2 text-base font-urdu">جدید مالیاتی مسائل</h4>
+                            <p class="text-slate-600 text-xs line-clamp-2 leading-relaxed font-urdu">کرپٹو کرنسی اور ڈیجیٹل اثاثوں کی شرعی حیثیت پر ایک تحقیقی نظر۔</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Ask a Question -->
+    <section id="qa" class="py-24 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-3xl p-8 md:p-12 border border-blue-100 shadow-xl text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                
+                <i class="fas fa-question-circle text-6xl text-blue-500 mb-6 relative z-10"></i>
+                <h2 class="text-3xl font-bold text-slate-800 mb-3 font-urdu relative z-10">سوال کریں</h2>
+                <p class="text-slate-600 mb-8 max-w-lg mx-auto relative z-10">آپ کے ذہن میں کوئی علمی، فقہی یا فکری سوال ہے؟ فارم پر کریں، ہمارے ماہرین جلد رابطہ کریں گے۔</p>
+                
+                <form onsubmit="event.preventDefault(); alert('شکریہ! آپ کا سوال موصول ہو گیا ہے۔');" class="text-right max-w-lg mx-auto relative z-10 space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">نام</label>
+                        <input type="text" class="w-full p-4 border border-slate-200 bg-slate-50 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition" placeholder="علی احمد..." required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">سوال</label>
+                        <textarea rows="4" class="w-full p-4 border border-slate-200 bg-slate-50 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition" placeholder="تفصیل لکھیں..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-900 text-white py-4 rounded-xl font-bold hover:bg-blue-800 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">سوال بھیجیں</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-[#0f172a] text-white py-16 border-t border-slate-800 relative z-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-right">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center justify-center md:justify-start gap-3">
+                        <i class="fas fa-book-reader text-blue-500"></i> فکر و نظر اکیڈمی
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-loose max-w-md mx-auto md:mx-0 font-urdu">
+                        مولانا عبداللہ صاحب کی زیر سرپرستی قائم کردہ ادارہ۔ ہمارا عزم امت مسلمہ کی فکری آبیاری اور علمی خدمت ہے۔
+                    </p>
+                    <div class="flex gap-4 justify-center md:justify-start mt-6">
+                        <a href="https://www.facebook.com/share/g/1Ae1LurfJG/" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-[#1877F2] flex items-center justify-center transition text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-[#FF0000] flex items-center justify-center transition text-white"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-[#1DA1F2] flex items-center justify-center transition text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="https://chat.whatsapp.com/Gf0D7blCohDGlhgUZPBAoD" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-[#25D366] flex items-center justify-center transition text-white"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-blue-400">فوری روابط</h3>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#recent-courses" class="hover:text-white transition">حالیہ کورسز</a></li>
+                        <li><a href="#ilhad" class="hover:text-white transition">الحاد جدید</a></li>
+                        <li><a href="#library" class="hover:text-white transition">کتب خانہ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-blue-400">رابطہ</h3>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex items-center justify-center md:justify-start gap-3">
+                            <i class="fas fa-envelope text-slate-500"></i> 
+                            <a href="mailto:fikaronazaracademy@gmail.com" class="hover:text-white transition">fikaronazaracademy@gmail.com</a>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start gap-3">
+                            <i class="fas fa-phone text-slate-500"></i> +92 300 1234567
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start gap-3">
+                            <i class="fas fa-map-marker-alt text-slate-500"></i> سیکٹر I-8، اسلام آباد
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-12 pt-8 text-center text-xs text-slate-500">
+                &copy; 2025 Fikr-o-Nazar Academy. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
